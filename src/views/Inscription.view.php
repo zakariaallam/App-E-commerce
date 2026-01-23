@@ -93,10 +93,15 @@
               </div>
 
 
-              <div class="d-grid">
+              <div class="d-grid mb-2">
                 <button type="submit" class="btn btn-primary">
                   Sign Up
                 </button>
+              </div>
+              <div class="d-grid">
+                <a href="/Auth/Login" class="btn btn-secondary">
+                  Login
+                  </a>
               </div>
             </form>
 

@@ -36,7 +36,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
     <div class="container">
-        <a class="navbar-brand fw-bold text-dark" href="#">E-commerce <span class="text-warning"><i class="bi bi-star-fill"></i></span></a>
+        <a class="navbar-brand fw-bold text-dark" href="/Home/index">E-commerce <span class="text-warning"><i class="bi bi-star-fill"></i></span></a>
         
         <form class="d-flex flex-grow-1 mx-lg-5 my-2 my-lg-0">
             <div class="input-group">
@@ -52,7 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link position-relative" href="/index.php/Cart/index">
                     <i class="bi bi-cart3 fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia">2</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia"><?= $_SESSION['cuont'] ?></span>
                     <span class="ms-1">Panier</span>
                 </a>
             </li>
@@ -66,27 +66,28 @@
         <div class="col-lg-9">
             <div class="card cart-card">
                 <div class="card-header bg-white py-3">
-                    <h5 class="mb-0 fw-bold">Panier (2 articles)</h5>
+                    <h5 class="mb-0 fw-bold">Panier</h5>
                 </div>
-                
+                <?php foreach($_SESSION['panie'] as $prd) : ?>
                 <div class="card-body p-0">
                     <div class="p-3 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center">
                         <div class="d-flex align-items-center">
-                            <img src="https://via.placeholder.com/100" class="product-img me-3" alt="Product">
+                            <img src=<?= $prd->getImage() ?> class="product-img me-3" alt="Product">
                             <div>
-                                <h6 class="mb-1">Apple iPhone 14 Pro Max - 256GB - Deep Purple</h6>
+                                <h6 class="mb-1"><?= $prd->getName() ?></h6>
                                 <p class="small text-muted mb-1">Vendeur: Jumia Express</p>
-                                <p class="small text-success mb-0">En stock</p>
+                                <p class="small text-success mb-0"><?= $prd->getStock() ?></p>
                             </div>
                         </div>
                         
                         <div class="mt-3 mt-md-0 text-md-end">
-                            <h5 class="fw-bold mb-1">12,499.00 DH</h5>
+                            <h5 class="fw-bold mb-1"><?= $prd->getPrice() ?> DH</h5>
                             <p class="small text-muted text-decoration-line-through mb-2">14,000.00 DH</p>
                             <span class="badge bg-warning text-dark">-11%</span>
                         </div>
                     </div>
-                    <div class="px-3 py-2 border-bottom d-flex justify-content-between align-items-center bg-light-subtle">
+                    <?php endforeach?>
+                    <!-- <div class="px-3 py-2 border-bottom d-flex justify-content-between align-items-center bg-light-subtle">
                         <div class="remove-btn"><i class="bi bi-trash3 me-1"></i> Supprimer</div>
                         <div class="d-flex align-items-center gap-3">
                             <button class="quantity-btn">-</button>
@@ -117,7 +118,7 @@
                             <span class="fw-bold">2</span>
                             <button class="quantity-btn">+</button>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             
@@ -130,16 +131,21 @@
             <div class="card cart-card p-3 mb-3">
                 <h6 class="text-uppercase fw-bold border-bottom pb-2 mb-3">Résumé de la commande</h6>
                 <div class="d-flex justify-content-between mb-2">
+                    <?php foreach($_SESSION['panie'] as $prd){
+                        if(empty($total)) $total = 0;
+                        $total += $prd->getPrice();
+                    }
+                    ?>
                     <span>Sous-total</span>
-                    <span class="fw-bold">12,999.00 DH</span>
+                    <span class="fw-bold"><?= $total ?> DH</span>
                 </div>
                 <p class="small text-muted mb-3">L'expédition n'est pas encore incluse</p>
                 <hr>
                 <div class="d-flex justify-content-between mb-3">
                     <span class="fw-bold">Total</span>
-                    <span class="fw-bold fs-5">12,999.00 DH</span>
+                    <span class="fw-bold fs-5"><?= $total ?> DH</span>
                 </div>
-                <button class="btn btn-jumia shadow-sm">COMMANDER (12,999.00 DH)</button>
+                <a href="/command/index" class="text-decoration-none"><button class="btn btn-jumia shadow-sm">COMMANDER (<?= $total ?> DH)</button> </a>
             </div>
             
             <div class="card cart-card p-3">

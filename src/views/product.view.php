@@ -28,6 +28,37 @@
 </head>
 <body>
 
+<nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold text-dark" href="#">E-commerce <span class="text-warning"><i class="bi bi-star-fill"></i></span></a>
+        
+        <form class="d-flex flex-grow-1 mx-lg-5 my-2 my-lg-0">
+            <div class="input-group">
+                <span class="input-group-text bg-white border-end-0"><i class="bi bi-search text-muted"></i></span>
+                <input class="form-control border-start-0 nav-search" type="search" placeholder="Chercher un produit, une marque...">
+                <button class="btn btn-jumia px-4" type="submit">RECHERCHER</button>
+            </div>
+        </form>
+
+        <ul class="navbar-nav ms-auto flex-row gap-3">
+            <?php
+             if(!isset($_SESSION['user'])) :?>
+                <li class="nav-item"><a class="nav-link" href="/Auth/login"><i class="bi bi-person me-1"></i> Se connecter</a></li>
+            <?php else : ?> 
+                <li class="nav-item"><a class="nav-link" href="/Home/index"><i class="bi bi-person me-1"></i> <?= $_SESSION['user']['name'] ?></a></li>
+            <?php endif?>    
+            <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-question-circle me-1"></i> Aide</a></li>
+            <li class="nav-item">
+                <a class="nav-link position-relative" href="/Cart/index">
+                    <i class="bi bi-cart3 fs-5"></i>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia"><?= $_SESSION['cuont'] ?? 0 ?></span>
+                    <span class="ms-1">Panier</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
 <div class="container py-4">
     <div class="row g-3">
         
@@ -63,9 +94,11 @@
                         <p class="text-success small fw-bold"><i class="bi bi-shield-check"></i> Garantie de 12 mois</p>
                         
                         <div class="mt-4">
+                            <a href="/Product/sendCart?id=<?= $_GET['id'] ?>" class="card text-decoration-none" ?>
                             <button class="btn btn-buy w-100 mb-2">
                                 <i class="bi bi-cart-plus me-2"></i> AJOUTER AU PANIER
                             </button>
+                            </a>
                         </div>
                     </div>
                 </div>

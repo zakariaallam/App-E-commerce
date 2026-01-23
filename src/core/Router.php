@@ -21,7 +21,10 @@ class Router {
      if($posission == false){
          $arrayAction = explode("/",$uri);
          if(count($arrayAction)< 3 ){
-           require_once __DIR__ . "/../views/Home.view.php";
+           return [
+             "controller" => "Home",
+             "methode" => "index"
+             ];
          }
          return [
              "controller" => $arrayAction[1],

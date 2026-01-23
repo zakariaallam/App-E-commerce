@@ -103,7 +103,7 @@
         <h3>Create Account</h3>
 
         <form method="post">
-             <p class="text-danger text-center"><?= $success ?? $error ?></p>
+             <p class="text-danger text-center"><?= $success ?? $error = "" ?></p>
 
             <div class="mb-3">
                 <label>Email</label>
@@ -115,9 +115,12 @@
                 <input type="password" name="password" class="form-control" placeholder="Enter password">
             </div>
 
-            <button type="submit" class="btn btn-modern w-100 py-2">
+            <button type="submit" class="btn btn-modern w-100 py-2 mb-4">
                 Register
             </button>
+            <a href="/Auth/Inscription" class="w-100 text-white text-center">
+                Inscription
+            </a>
         </form>
     </div>
 

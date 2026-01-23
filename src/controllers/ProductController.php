@@ -20,4 +20,15 @@ class ProductController{
         $this->resp->Views("Product",$data);
     }
 
+     public function sendCart(){
+        if(session_status() === PHP_SESSION_NONE){
+            session_start();
+        }
+         $id = $_GET['id'];
+        $message = $this->produitService->sendCart($id);
+        header("location: /Product/index?id=$id");
+        echo "<script>alert('$message');</script>";
+        // require_once __DIR__ . "/../views/Cart.view.php";
+    }
+
 }

@@ -114,9 +114,9 @@
             <?php endif?>    
             <li class="nav-item"><a class="nav-link" href="#"><i class="bi bi-question-circle me-1"></i> Aide</a></li>
             <li class="nav-item">
-                <a class="nav-link position-relative" href="/index.php/Cart/index">
+                <a class="nav-link position-relative" href="/Cart/index">
                     <i class="bi bi-cart3 fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia">2</span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia"><?= $_SESSION['cuont'] ?? 0 ?></span>
                     <span class="ms-1">Panier</span>
                 </a>
             </li>
