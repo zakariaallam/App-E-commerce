@@ -12,4 +12,5 @@ RUN if [ -d "/var/www/html/public" ]; then \
     fi
 WORKDIR /var/www/html
 COPY  . .
+RUN composer install --no-dev --optimize-autoloader
 EXPOSE 80
