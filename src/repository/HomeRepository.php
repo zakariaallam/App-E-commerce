@@ -7,7 +7,7 @@ use PDO;
 class HomeRepository{
     
     public function getProduct(){
-        $sql = "SELECT * FROM Products";
+        $sql = "SELECT * FROM products";
         $stmt = DataBase::Connextion()->prepare($sql);
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
