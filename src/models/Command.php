@@ -7,7 +7,7 @@ class Command{
     private int $total;
     private string $status;
     private string $created_at;
-
+    private array $listCommandItems;
 
     public function save(){
         $sql = "INSERT INTO command (total,status) VALUES (:total,:status)";
@@ -23,6 +23,17 @@ class Command{
         $stmt->execute();
         $stmt->setFetchMode(PDO::FETCH_CLASS, User::class);
          return $stmt->fetch();
+    }
+
+    public function addItems($commad){
+        $this->listCommandItems[] = $commad;
+    }
+
+    public function getTotalCommand(){
+       return  array_reduce(
+        $this->listCommandItems,
+        fn($sum, $item) => $sum + $item->subTotal(),
+        0);
     }
     public function getId(){
         return $this->id;

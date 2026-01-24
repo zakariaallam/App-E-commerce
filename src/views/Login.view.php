@@ -103,7 +103,7 @@
         <h3>Create Account</h3>
 
         <form method="post">
-             <p class="text-danger text-center"><?= $success ?? $error = "" ?></p>
+             <p class="text-danger text-center"><?= $error ?? "" ?></p>
 
             <div class="mb-3">
                 <label>Email</label>

@@ -52,7 +52,7 @@
             <li class="nav-item">
                 <a class="nav-link position-relative" href="/index.php/Cart/index">
                     <i class="bi bi-cart3 fs-5"></i>
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia"><?= $_SESSION['cuont'] ?></span>
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-jumia"><?= $_SESSION['cuont'] ?? 0 ?></span>
                     <span class="ms-1">Panier</span>
                 </a>
             </li>
@@ -68,6 +68,7 @@
                 <div class="card-header bg-white py-3">
                     <h5 class="mb-0 fw-bold">Panier</h5>
                 </div>
+                <?php if(isset($_SESSION['panie'])) : ?>
                 <?php foreach($_SESSION['panie'] as $prd) : ?>
                 <div class="card-body p-0">
                     <div class="p-3 border-bottom d-flex flex-column flex-md-row justify-content-between align-items-md-center">
@@ -87,6 +88,7 @@
                         </div>
                     </div>
                     <?php endforeach?>
+                    <?php endif?>
                     <!-- <div class="px-3 py-2 border-bottom d-flex justify-content-between align-items-center bg-light-subtle">
                         <div class="remove-btn"><i class="bi bi-trash3 me-1"></i> Supprimer</div>
                         <div class="d-flex align-items-center gap-3">
@@ -131,6 +133,7 @@
             <div class="card cart-card p-3 mb-3">
                 <h6 class="text-uppercase fw-bold border-bottom pb-2 mb-3">Résumé de la commande</h6>
                 <div class="d-flex justify-content-between mb-2">
+                <?php if(isset($_SESSION['panie'])) : ?>
                     <?php foreach($_SESSION['panie'] as $prd){
                         if(empty($total)) $total = 0;
                         $total += $prd->getPrice();
@@ -147,7 +150,7 @@
                 </div>
                 <a href="/command/index" class="text-decoration-none"><button class="btn btn-jumia shadow-sm">COMMANDER (<?= $total ?> DH)</button> </a>
             </div>
-            
+            <?php endif?>
             <div class="card cart-card p-3">
                 <p class="small fw-bold mb-2">RETOURS GRATUITS</p>
                 <p class="small text-muted mb-0">Satisfait ou remboursé sous 15 jours.</p>

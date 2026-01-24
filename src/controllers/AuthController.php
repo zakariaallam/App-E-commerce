@@ -14,8 +14,7 @@ class AuthController extends controller{
             $data = $user->setEmail($email)
             ->setPassword($password)
             ->getByEmail();
-
-            if(isset($data)){
+            if($data){
                session_start();
                $_SESSION['user'] = [
                 "id" => $data->getId(),
@@ -24,6 +23,8 @@ class AuthController extends controller{
                ];
                header("location: /Home/index");
                return $this->View("Home");
+            }else{
+                return $this->View("Login",["error" => "Email or pawsswor wrong"]);
             }
 
          }
